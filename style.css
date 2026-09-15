@@ -1,0 +1,800 @@
+/* ============================================================
+   БАЗОВЫЕ СТИЛИ + ГЛАВНАЯ СТРАНИЦА
+   ============================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== Шапка ===== */
+header {
+    background-color: #2c2c2c;
+    color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}
+
+.back-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.back-link:hover {
+    opacity: 0.7;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+/* ===== Заголовок страницы ===== */
+.title-section {
+    padding: 30px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.title-box {
+    text-align: center;
+}
+
+.title-box h1 {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 36px;
+    color: #5c3a3a;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* ===== Приветствие (главная) ===== */
+.intro-text {
+    padding: 20px 40px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+    border-top: 1px dashed #ccc;
+    border-bottom: 1px dashed #ccc;
+    margin-bottom: 20px;
+}
+
+/* ===== Секции с контентом (главная) ===== */
+.content-section {
+    display: flex;
+    border-bottom: 1px dashed #ccc;
+    min-height: 200px;
+}
+
+.content-section:last-child {
+    border-bottom: none;
+}
+
+.image-placeholder {
+    width: 40%;
+    background-color: #f7f7f7;
+    border-right: 1px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.plus-btn:hover {
+    transform: scale(1.1);
+}
+
+.text-content {
+    width: 60%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    width: fit-content;
+}
+
+.text-content h2 {
+    font-family: 'Impact', 'Arial Black', sans-serif;
+    font-size: 28px;
+    color: #5c3a3a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    transition: transform 0.25s ease, color 0.25s ease;
+    transform-origin: left center;
+}
+
+.card-link:hover h2,
+.card-link:focus h2 {
+    transform: scale(1.08);
+    color: #7a4a4a;
+}
+
+.text-content p {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #777;
+}
+
+/* ===== Контент внутренних страниц ===== */
+.page-content {
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.7;
+}
+
+.page-content p {
+    margin-bottom: 15px;
+}
+
+/* ============================================================
+   СТРАНИЦА ТЕОРИИ (задание 9)
+   ============================================================ */
+
+.subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #888;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+/* ===== Чёрный квадрат вместо эмодзи и цифр ===== */
+.square-badge {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: #1e1e1e;
+    border-radius: 3px;
+    margin-right: 10px;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+/* ===== Блок: карточка + стрелка + текст ===== */
+.rule-with-card {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 30px 40px;
+    background: #ffffff;
+    flex-wrap: nowrap;
+}
+
+/* Обёртка карточки + стрелки */
+.rule-card-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-shrink: 0;
+}
+
+/* Сама карточка (белая, с чёрной рамкой) */
+.rule-card {
+    width: 320px;
+    background: #ffffff;
+    border: 2px solid #1e1e1e;
+    border-radius: 10px;
+    padding: 22px 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.rule-card:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+/* Мини-таблица внутри карточки */
+.rule-card .mini-table {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+}
+
+.rule-card .mini-row {
+    padding: 12px 10px;
+    border-bottom: 1px dashed #ccc;
+    text-align: center;
+    color: #1e1e1e;
+    font-weight: 500;
+}
+
+.rule-card .mini-row:last-child {
+    border-bottom: none;
+}
+
+/* Стрелка справа от карточки */
+.rule-arrow {
+    font-size: 52px;
+    color: #1e1e1e;
+    font-weight: bold;
+    line-height: 1;
+    margin-left: 18px;
+    user-select: none;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+/* Стрелка двигается при наведении на карточку */
+.rule-card-wrapper:hover .rule-arrow {
+    transform: translateX(12px);
+}
+
+/* Текст справа */
+.rule-text {
+    flex: 1;
+    padding-left: 30px;
+    min-width: 0;
+}
+
+.rule-text h2 {
+    font-family: 'Georgia', serif;
+    font-size: 22px;
+    color: #5c3a3a;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+/* ===== Алгоритм ===== */
+.algo-step {
+    margin-bottom: 18px;
+}
+
+.algo-step p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.algo-sublist {
+    list-style: disc;
+    padding-left: 30px;
+    margin-top: 10px;
+}
+
+.algo-sublist li {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+/* ===== Заголовки разделов на странице теории ===== */
+.rules-section {
+    padding: 0 40px 20px;
+}
+
+.rules-section h2,
+.tables-section h2 {
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    color: #5c3a3a;
+    margin: 30px 0 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.rules-section p,
+.rules-section li {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.rules-list {
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+.rules-list li {
+    margin-bottom: 8px;
+}
+
+/* ===== Таблицы-карточки (книжные корешки) ===== */
+.tables-section {
+    padding: 0 40px 40px;
+}
+
+.tables-section .hint {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+/* Мини-таблица внутри книги */
+.mini-table {
+    width: 100%;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+}
+
+.mini-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 6px;
+    border-bottom: 1px solid #eee;
+}
+
+.mini-row.header {
+    background: #5c3a3a;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 4px 4px 0 0;
+}
+
+.mini-row span:first-child {
+    text-align: left;
+    flex: 1;
+}
+
+.mini-row span:not(:first-child) {
+    text-align: center;
+    width: 50px;
+    color: #5c3a3a;
+    font-weight: bold;
+}
+
+.mini-row.header span:not(:first-child) {
+    color: #fff;
+}
+
+.table-caption {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #5c3a3a;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== Модальное окно ===== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 25px 30px;
+    border-radius: 10px;
+    max-width: 850px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: zoomIn 0.25s ease;
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 38px;
+    color: #fff;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 1001;
+    transition: opacity 0.2s;
+}
+
+.modal-close:hover {
+    opacity: 0.7;
+}
+
+/* ===== Полные таблицы внутри модалки ===== */
+.full-table h3 {
+    font-family: 'Georgia', serif;
+    font-size: 20px;
+    color: #5c3a3a;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 8px;
+}
+
+.full-table table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.full-table th {
+    background: #5c3a3a;
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.full-table td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.full-table tr:nth-child(even) td {
+    background: #fafafa;
+}
+
+.full-table .note {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #7a4a4a;
+    background: #fff8f0;
+    padding: 10px 15px;
+    border-left: 3px solid #5c3a3a;
+    border-radius: 4px;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   КНИЖНЫЕ КОРЕШКИ
+   ============================================================ */
+
+/* Контейнер-стопка книг */
+.book-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+/* Одиночная книга после текста */
+.book-stack-single {
+    padding: 10px 40px 30px;
+}
+
+/* Сама книга */
+.book {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+    transform-origin: left center;
+}
+
+/* Корешок */
+.book__spine {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 22px;
+    background: linear-gradient(180deg, #f5f1ea 0%, #ece5d8 100%);
+    border: 1px solid #d9cdb8;
+    border-left: 6px solid #8b6f47;
+    border-radius: 3px 8px 8px 3px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+        0 2px 4px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Декоративная "полоска" на корешке сверху и снизу */
+.book__spine::before,
+.book__spine::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #d9cdb8;
+}
+
+.book__spine::before { top: 0; }
+.book__spine::after  { bottom: 0; }
+
+/* Номер "тома" — как метка на корешке */
+.book__num {
+    font-family: 'Georgia', serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    background: #8b6f47;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Название книги */
+.book__title {
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+    color: #4a3a28;
+    letter-spacing: 0.3px;
+    flex: 1;
+    text-align: left;
+}
+
+/* ===== ЭФФЕКТ ПРИ НАВЕДЕНИИ ===== */
+
+/* Когда курсор на стопке — все книги слегка тускнеют */
+.book-stack:hover .book {
+    opacity: 0.45;
+    filter: grayscale(0.4);
+}
+
+/* ...кроме той, на которую навели */
+.book-stack:hover .book:hover {
+    opacity: 1;
+    filter: none;
+    transform: scale(1.04) translateX(6px);
+    z-index: 2;
+}
+
+/* Тень усиленная у "выделенной" книги */
+.book:hover .book__spine {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+        0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* Для одиночной книги — просто лёгкое увеличение */
+.book-stack-single .book:hover {
+    transform: scale(1.03) translateX(4px);
+}
+
+.book-stack-single .book:hover .book__spine {
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+        0 6px 16px rgba(0, 0, 0, 0.18);
+}
+
+/* ============================================================
+   СХЕМЫ ВНУТРИ БОЛЬШОЙ ТАБЛИЦЫ (ПРАВИЛА)
+   ============================================================ */
+
+.scheme {
+    padding: 20px 0;
+    border-bottom: 1px dashed #d9cdb8;
+}
+
+.scheme:last-child {
+    border-bottom: none;
+    padding-bottom: 5px;
+}
+
+.scheme__title {
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    color: #5c3a3a;
+    margin-bottom: 16px;
+    font-weight: bold;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #eee;
+}
+
+.scheme__flow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.scheme__node {
+    padding: 10px 18px;
+    background: #faf7f2;
+    border: 1px solid #d9cdb8;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: default;
+    max-width: 100%;
+}
+
+.scheme__node:hover {
+    transform: scale(1.03);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.scheme__node--start {
+    background: #f0e9dd;
+    font-weight: bold;
+    color: #4a3a28;
+}
+
+.scheme__node--accent {
+    background: #5c3a3a;
+    color: #ffffff;
+    font-weight: bold;
+    border-color: #5c3a3a;
+}
+
+.scheme__node--yes {
+    background: #eaf3ea;
+    border-color: #a8c9a8;
+    color: #2f5a2f;
+}
+
+.scheme__node--no {
+    background: #f7ecec;
+    border-color: #d9b3b3;
+    color: #7a3a3a;
+}
+
+.scheme__arrow {
+    font-size: 18px;
+    color: #8b6f47;
+    line-height: 1;
+    user-select: none;
+}
+
+.scheme__row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.scheme__example {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #7a4a4a;
+    background: #fff8f0;
+    padding: 8px 14px;
+    border-left: 3px solid #8b6f47;
+    border-radius: 4px;
+    margin-top: 14px;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* ============================================================
+   АДАПТИВ (телефоны)
+   ============================================================ */
+@media (max-width: 720px) {
+    .rule-with-card {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .rule-card-wrapper {
+        flex-direction: row;
+    }
+
+    .rule-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .rule-arrow {
+        font-size: 40px;
+        margin-left: 10px;
+    }
+
+    .rule-card-wrapper:hover .rule-arrow {
+        transform: translateX(8px);
+    }
+
+    .rule-text {
+        padding-left: 0;
+    }
+
+    .book-stack-single {
+        padding: 10px 20px 20px;
+    }
+
+    .book__spine {
+        padding: 12px 16px;
+    }
+
+    .book__title {
+        font-size: 14px;
+    }
+
+    .scheme__node {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .scheme__title {
+        font-size: 15px;
+    }
+
+    .scheme__row {
+        flex-direction: column;
+        align-items: center;
+    }
+}

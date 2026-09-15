@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теор — Задание 9 ЕГЭ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="header-left">
+            <a href="index.html" class="back-link">← назад</a>
+        </div>
+        <div class="header-right">
+            <span>Подготовка к ЕГЭ</span>
+            <span>▼</span>
+        </div>
+    </header>
+
+    <div class="title-section">
+        <div class="title-box">
+            <h1>ЗАДАНИЕ 9</h1>
+            <p class="subtitle">Правописание корней</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+
+        <!-- БЛОК 1 -->
+        <section class="rules-section">
+            <h2><span class="square-badge"></span>Что проверяет задание 9</h2>
+            <p>В задании 9 нужно найти ряды, где <strong>во всех словах пропущена одна и та же буква</strong>. Пропуски бывают только в <strong>корне</strong>. Всего есть <strong>5 типов орфограмм</strong>:</p>
+            <ul class="rules-list">
+                <li>проверяемая гласная (проверяем ударением);</li>
+                <li>непроверяемая гласная (запоминаем);</li>
+                <li>чередующаяся гласная (по правилу);</li>
+                <li>буквы Ы/И после Ц;</li>
+                <li>буквы О/Ё после шипящих.</li>
+            </ul>
+        </section>
+
+        <!-- КНИГА: ПРАВИЛА -->
+        <section class="book-stack-single">
+            <div class="book" onclick="openModal('img0')" title="Нажми, чтобы открыть правила">
+                <div class="book__spine">
+                    <span class="book__num">I</span>
+                    <span class="book__title">Правила к заданию 9</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК 2: АЛГОРИТМ -->
+        <section class="rules-section">
+            <h2><span class="square-badge"></span>Как выполнять задание</h2>
+
+            <div class="algo-step">
+                <p><strong>Шаг 1. Поставь ударение</strong> в каждом слове.</p>
+            </div>
+
+            <div class="algo-step">
+                <p><strong>Шаг 2. Определи тип гласной</strong> в каждом слове:</p>
+                <ul class="algo-sublist">
+                    <li><strong>Проверяемая</strong> — можно подобрать проверочное слово, где гласная под ударением.</li>
+                    <li><strong>Непроверяемая</strong> — словарное слово, надо запомнить.</li>
+                    <li><strong>Чередующаяся</strong> — работает правило (от ударения, от суффикса -А-, от согласной, от значения).</li>
+                </ul>
+            </div>
+
+            <div class="algo-step">
+                <p><strong>Шаг 3. Подбирай проверочные слова правильно.</strong> Нельзя проверять глагол <em>совершенного вида</em> глаголом <em>несовершенного вида</em>:</p>
+                <p style="color: #2f5a2f;">✔️ опоздать → поздно</p>
+                <p style="color: #7a3a3a;">🚫 опоздать → опаздывать (нельзя!)</p>
+            </div>
+
+            <div class="algo-step">
+                <p><strong>Шаг 4. Осторожно с омонимами</strong> — словами, которые звучат одинаково, но значат разное. Например, <em>примерять</em> платье (от «мерить») и <em>примирять</em> друзей (от «мир»).</p>
+            </div>
+
+            <div class="algo-step">
+                <p><strong>Шаг 5.</strong> В ответе всегда <strong>от 2 до 4 цифр</strong>. Если у тебя только одна — ты ошибся.</p>
+            </div>
+        </section>
+
+        <!-- БЛОК 3: КНИГИ-ТАБЛИЦЫ -->
+        <section class="tables-section">
+            <h2><span class="square-badge"></span>Таблицы для повторения</h2>
+            <p class="hint">Нажми на книгу, чтобы открыть таблицу</p>
+
+            <div class="book-stack">
+
+                <div class="book" onclick="openModal('img1')">
+                    <div class="book__spine">
+                        <span class="book__num">1</span>
+                        <span class="book__title">Проверяемая гласная</span>
+                    </div>
+                </div>
+
+                <div class="book" onclick="openModal('img2')">
+                    <div class="book__spine">
+                        <span class="book__num">2</span>
+                        <span class="book__title">Непроверяемая гласная</span>
+                    </div>
+                </div>
+
+                <div class="book" onclick="openModal('img3')">
+                    <div class="book__spine">
+                        <span class="book__num">3</span>
+                        <span class="book__title">Чередующиеся корни</span>
+                    </div>
+                </div>
+
+                <div class="book" onclick="openModal('img4')">
+                    <div class="book__spine">
+                        <span class="book__num">4</span>
+                        <span class="book__title">Ы / И после Ц</span>
+                    </div>
+                </div>
+
+                <div class="book" onclick="openModal('img5')">
+                    <div class="book__spine">
+                        <span class="book__num">5</span>
+                        <span class="book__title">О / Ё после шипящих</span>
+                    </div>
+                </div>
+
+                <div class="book" onclick="openModal('img6')">
+                    <div class="book__spine">
+                        <span class="book__num">6</span>
+                        <span class="book__title">Корни-омофоны</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО -->
+<div id="modal" class="modal" onclick="closeModal(event)">
+    <span class="modal-close" onclick="closeModal(event)">×</span>
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <div id="modal-body"></div>
+    </div>
+</div>
+
+<!-- СКРЫТЫЕ ТАБЛИЦЫ -->
+<div style="display:none;">
+
+    <!-- БОЛЬШАЯ ТАБЛИЦА: ВСЕ ПРАВИЛА -->
+    <div id="img0" class="full-table">
+        <h3>Правила к заданию 9 — простыми словами</h3>
+
+        <!-- 1. Проверяемая -->
+        <div class="scheme">
+            <h4 class="scheme__title">1. Проверяемая гласная</h4>
+            <div class="scheme__flow">
+                <div class="scheme__node scheme__node--start">Слышу без ударения — сомневаюсь</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__node scheme__node--accent">Меняю слово так, чтобы гласная была под ударением</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__row">
+                    <div class="scheme__node scheme__node--yes">Услышал букву → пишу её</div>
+                    <div class="scheme__node scheme__node--no">Не получается → слово словарное</div>
+                </div>
+            </div>
+            <p class="scheme__example">говорИть → гОвор • жара → жАркий • молодой → мОлодость</p>
+        </div>
+
+        <!-- 2. Непроверяемая -->
+        <div class="scheme">
+            <h4 class="scheme__title">2. Непроверяемая (словарная) гласная</h4>
+            <div class="scheme__flow">
+                <div class="scheme__node scheme__node--start">Проверить ударением не получается</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__node scheme__node--accent">Смотрю в словаре</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__node scheme__node--yes">Запоминаю, как пишется</div>
+            </div>
+            <p class="scheme__example">горизОнт • экспЕримент • гарнизОн • вЕтЕран</p>
+        </div>
+
+        <!-- 3. Чередующиеся -->
+        <div class="scheme">
+            <h4 class="scheme__title">3. Чередующиеся гласные</h4>
+            <div class="scheme__flow">
+                <div class="scheme__node scheme__node--start">В корне чередование. Смотрю, от чего зависит выбор</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__row">
+                    <div class="scheme__node">От ударения</div>
+                    <div class="scheme__node">От -А- после корня</div>
+                    <div class="scheme__node">От согласной</div>
+                    <div class="scheme__node">От значения</div>
+                </div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__node scheme__node--accent">Вспоминаю правило и исключения</div>
+            </div>
+            <p class="scheme__example">-ГАР-/-ГОР-, -ЗАР-/-ЗОР-, -ЛАГ-/-ЛОЖ-, -КАС-/-КОС-, -РАСТ-/-РОС-, -РАВН-/-РОВН-, -МАК-/-МОК-</p>
+        </div>
+
+        <!-- 4. Ы / И после Ц -->
+        <div class="scheme">
+            <h4 class="scheme__title">4. Буквы Ы / И после Ц</h4>
+            <div class="scheme__flow">
+                <div class="scheme__node scheme__node--start">Вижу Ц в корне</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__row">
+                    <div class="scheme__node scheme__node--yes">Обычно пишу И</div>
+                    <div class="scheme__node scheme__node--no">Слово-исключение → пишу Ы</div>
+                </div>
+            </div>
+            <p class="scheme__example">цирк, цифра, цитата • НО: цыган, цыплёнок, на цыпочках, цыц, цыкнуть</p>
+        </div>
+
+        <!-- 5. О / Ё после шипящих -->
+        <div class="scheme">
+            <h4 class="scheme__title">5. Буквы О / Ё после шипящих в корне</h4>
+            <div class="scheme__flow">
+                <div class="scheme__node scheme__node--start">Вижу шипящую (Ж, Ш, Ч, Щ) в корне</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__node scheme__node--accent">Пробую подобрать родственное слово с буквой Е</div>
+                <div class="scheme__arrow">↓</div>
+                <div class="scheme__row">
+                    <div class="scheme__node scheme__node--yes">Получилось (Е) → пишу Ё</div>
+                    <div class="scheme__node scheme__node--no">Не получилось → пишу О</div>
+                </div>
+            </div>
+            <p class="scheme__example">жЁлтый — желтеть • шЁпот — шептать • НО: шорник, капюшон, шоколад, шоссе</p>
+        </div>
+
+    </div>
+
+    <!-- 1. ПРОВЕРЯЕМАЯ -->
+    <div id="img1" class="full-table">
+        <h3>1. Проверяемая гласная в корне</h3>
+        <p style="font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
+            <strong>Главное правило:</strong> если гласная в корне без ударения, надо изменить слово или подобрать однокоренное, чтобы эта гласная стала ударной.
+        </p>
+        <table>
+            <tr><th>Как проверить</th><th>Пример</th></tr>
+            <tr><td>Изменить форму слова</td><td>говорИть → гОвор</td></tr>
+            <tr><td>Подобрать однокоренное</td><td>жара → жАркий</td></tr>
+            <tr><td>Подобрать другую часть речи</td><td>молодой → мОлодость</td></tr>
+        </table>
+        <p class="note">⚠️ <strong>Ловушка 1:</strong> нельзя проверять глагол совершенного вида глаголом несовершенного. ✔️ опоздать → по́здно. 🚫 опоздать → опа́здывать.</p>
+        <p class="note">⚠️ <strong>Ловушка 2:</strong> есть слова, которые звучат одинаково, но пишутся по-разному. Их смысл подсказан в скобках. Например, разрЕдить (грядки) — от «редко», разрЯдить (ружьё) — от «разряд».</p>
+    </div>
+
+    <!-- 2. НЕПРОВЕРЯЕМАЯ -->
+    <div id="img2" class="full-table">
+        <h3>2. Непроверяемая (словарная) гласная</h3>
+        <p style="font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
+            Проверить ударением нельзя. Такие слова надо <strong>запомнить</strong> или посмотреть в орфографическом словаре.
+        </p>
+        <table>
+            <tr><th>Примеры слов</th></tr>
+            <tr><td>горизОнт, экспЕримент, гарнизОн, вЕтЕран, интЕллЕкт, прЕзидент, дЕпутат</td></tr>
+            <tr><td>унИвЕрситет, тЕррИтория, трАдиция, Атмосфера, прИвИлегия</td></tr>
+        </table>
+        <p class="note">⚠️ <strong>Ловушка ЕГЭ:</strong> одно и то же слово может попасться с разными пропусками: <br>
+        г<u>о</u>ризонтальный (пропущена непроверяемая О) <br>
+        гориз<u>о</u>нтальный (пропущена проверяемая О, проверяем словом «горизОнт»)</p>
+    </div>
+
+    <!-- 3. ЧЕРЕДУЮЩИЕСЯ -->
+    <div id="img3" class="full-table">
+        <h3>3. Чередующиеся гласные</h3>
+        <p style="font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
+            Выбор буквы зависит от <strong>4 условий</strong>. Смотрим на схему:
+        </p>
+
+        <h4 style="font-family: Georgia, serif; color: #5c3a3a; margin: 15px 0 8px;">Условие 1. От ударения</h4>
+        <table>
+            <tr><th>Корни</th><th>Если без ударения</th><th>Примеры</th></tr>
+            <tr><td>-ГАР- / -ГОР-<br>-КЛАН- / -КЛОН-<br>-ТВАР- / -ТВОР-</td><td>Пишу <strong>О</strong></td><td>горе́ть, наклони́ться, твори́ть</td></tr>
+            <tr><td>-ЗАР- / -ЗОР-<br>-ПЛАВ- / -ПЛОВ-</td><td>Пишу <strong>А</strong></td><td>заря́, плавни́к</td></tr>
+        </table>
+        <p class="note">Под ударением пишу то, что слышу: зага́р, зо́ри, пла́вать.</p>
+
+        <h4 style="font-family: Georgia, serif; color: #5c3a3a; margin: 15px 0 8px;">Условие 2. От суффикса -А- после корня</h4>
+        <table>
+            <tr><th>Корни</th><th>Есть -А-</th><th>Нет -А-</th><th>Примеры</th></tr>
+            <tr><td>-ДЕР- / -ДИР-<br>-МЕР- / -МИР-<br>-ПЕР- / -ПИР-<br>-ТЕР- / -ТИР-<br>-БЛЕСТ- / -БЛИСТ-<br>-ЖЕГ- / -ЖИГ-<br>-СТЕЛ- / -СТИЛ-<br>-ЧЕТ- / -ЧИТ-</td><td>И</td><td>Е</td><td>забирать — берёт<br>замирать — замереть<br>блистать — блестеть</td></tr>
+            <tr><td>-ЛАГ- / -ЛОЖ-<br>-КАС- / -КОС-</td><td>А</td><td>О</td><td>касаться — коснуться<br>излагать — изложить</td></tr>
+        </table>
+
+        <h4 style="font-family: Georgia, serif; color: #5c3a3a; margin: 15px 0 8px;">Условие 3. От согласной в корне</h4>
+        <table>
+            <tr><th>Корни</th><th>Условие</th><th>Пишу</th><th>Примеры</th></tr>
+            <tr><td>-РАСТ- / -РАЩ-</td><td>перед СТ или Щ</td><td>А</td><td>расти́, выращенный</td></tr>
+            <tr><td>-РОС-</td><td>перед С</td><td>О</td><td>росли́, вы́рос</td></tr>
+            <tr><td>-СКАК-</td><td>оканчивается на К</td><td>А</td><td>скака́ть</td></tr>
+            <tr><td>-СКОЧ-</td><td>приставочные глаголы</td><td>О</td><td>вскочи́ть</td></tr>
+        </table>
+        <p class="note">⚠️ Запомнить: росток, ростовщик, Ростов, Ростислав, подростковый, отрасль, на вырост; скачок, скачу, выскочка.</p>
+
+        <h4 style="font-family: Georgia, serif; color: #5c3a3a; margin: 15px 0 8px;">Условие 4. От значения</h4>
+        <table>
+            <tr><th>Корень</th><th>Значение</th><th>Примеры</th></tr>
+            <tr><td>-РАВН-</td><td>«равный, одинаковый, сравнение»</td><td>уравнять в правах, сравняться</td></tr>
+            <tr><td>-РОВН-</td><td>«ровный, гладкий, прямой»</td><td>выровнять, прировнять (=пригладить)</td></tr>
+            <tr><td>-МАК-</td><td>«погружать в жидкость»</td><td>макать в чай</td></tr>
+            <tr><td>-МОК-</td><td>«пропускать жидкость, становиться мокрым»</td><td>промокнуть под дождём</td></tr>
+        </table>
+        <p class="note">⚠️ Запомнить: поравняться, равняйсь, равнение, равнина, уровень, поровну, ровесник, выровнять; промокательная (бумага), промокну́ть (крем).</p>
+    </div>
+
+    <!-- 4. Ы / И -->
+    <div id="img4" class="full-table">
+        <h3>4. Буквы Ы / И после Ц в корне</h3>
+        <table>
+            <tr><th>Когда</th><th>Пишу</th><th>Примеры</th></tr>
+            <tr><td>Обычно в корне после Ц</td><td><strong>И</strong></td><td>цирк, цифра, цитата, цинк</td></tr>
+            <tr><td>Слова-исключения</td><td><strong>Ы</strong></td><td>цыган, цыплёнок, на цыпочках, цыц, цыкну́ть</td></tr>
+        </table>
+        <p class="note">⚠️ От этих слов образуются производные — в них тоже пишется Ы: цыганский, цыплячий, на цыпочках.</p>
+    </div>
+
+    <!-- 5. О / Ё -->
+    <div id="img5" class="full-table">
+        <h3>5. Буквы О / Ё после шипящих в корне</h3>
+        <p style="font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
+            Шипящие — это <strong>Ж, Ш, Ч, Щ</strong>. Смотрим, чередуется ли гласная с Е.
+        </p>
+        <table>
+            <tr><th>Что делаю</th><th>Результат</th><th>Примеры</th></tr>
+            <tr><td>Могу подобрать слово с буквой Е</td><td>Пишу <strong>Ё</strong></td><td>жЁлтый — желтеть<br>шЁпот — шептать<br>чЁрный — чернеть</td></tr>
+            <tr><td>Слова с Е нет</td><td>Пишу <strong>О</strong></td><td>шОрник, обжОра, изжОга, крыжОвник, шОрох</td></tr>
+            <tr><td>Слово заимствованное</td><td>Пишу <strong>О</strong></td><td>капюшОн, шОколад, шОссе, жОнглёр, шОу</td></tr>
+        </table>
+        <p class="note">⚠️ Запомнить: вечОр (хотя вЕчер) — слово-исключение.</p>
+    </div>
+
+    <!-- 6. ОМОФОНЫ -->
+    <div id="img6" class="full-table">
+        <h3>6. Корни-омофоны (звучат одинаково — пишутся по-разному)</h3>
+        <p style="font-family: Arial, sans-serif; font-size: 14px; margin-bottom: 15px; line-height: 1.6;">
+            Выбираю букву по <strong>значению</strong> слова. Подбираю проверочное слово с учётом смысла.
+        </p>
+        <table>
+            <tr><th>Слово (значение)</th><th>Проверка</th><th>Слово (значение)</th><th>Проверка</th></tr>
+            <tr><td>обвевать (ветром)</td><td>вЕять</td><td>обвивать (лианой)</td><td>вИть</td></tr>
+            <tr><td>частота (колебаний)</td><td>чАсто</td><td>чистота (помещения)</td><td>чИсто</td></tr>
+            <tr><td>спешите (на урок)</td><td>спЕшка</td><td>спишите (ответ)</td><td>спИшет</td></tr>
+            <tr><td>поседеть (от горя)</td><td>сЕд</td><td>посидеть (на скамейке)</td><td>сИдя</td></tr>
+            <tr><td>слепить (снеговик)</td><td>лЕпка</td><td>слипаться (от усталости)</td><td>лИпкий</td></tr>
+            <tr><td>скрепить (документы)</td><td>скрЕпка</td><td>скрипеть (дверью)</td><td>скрИп</td></tr>
+            <tr><td>разредить (грядки)</td><td>рЕдко</td><td>разрядить (ружьё)</td><td>разрЯд</td></tr>
+            <tr><td>посветить (фонариком)</td><td>свЕт</td><td>посвятить (стихи)</td><td>свЯтость</td></tr>
+            <tr><td>отворить (дверь)</td><td>затвОр</td><td>отварить (овощи)</td><td>вАрит</td></tr>
+            <tr><td>запивать (водой)</td><td>пИть</td><td>запевать (песню)</td><td>пЕть</td></tr>
+            <tr><td>обижать (сестру)</td><td>обИда</td><td>обежать (дом)</td><td>бЕг</td></tr>
+            <tr><td>примерять (платье)</td><td>мЕрка</td><td>примирять (друзей)</td><td>мИр</td></tr>
+            <tr><td>старожил (деревни)</td><td>стАрый</td><td>сторожил (склад)</td><td>стОрож</td></tr>
+            <tr><td>развивается (ребёнок)</td><td>развИтие</td><td>развевается (флаг)</td><td>вЕет</td></tr>
+            <tr><td>полоскать (бельё)</td><td>полОщет</td><td>поласкать (кошку)</td><td>лАска</td></tr>
+            <tr><td>прожевать (яблоко)</td><td>жЁваный</td><td>проживать (в квартире)</td><td>жИть</td></tr>
+            <tr><td>распевать (песни)</td><td>пЕть</td><td>распивать (напитки)</td><td>пИть</td></tr>
+            <tr><td>подражать (брату)</td><td>дрАзнит</td><td>подрожать (от холода)</td><td>дрОжь</td></tr>
+            <tr><td>умолять (о пощаде)</td><td>молит</td><td>умалять (значение)</td><td>мАло</td></tr>
+            <tr><td>увидать (кого-то)</td><td>вИдеть</td><td>увядать (от жары)</td><td>вЯнет</td></tr>
+            <tr><td>залезать (на дерево)</td><td>лЕзет</td><td>зализать (рану)</td><td>лИжет</td></tr>
+            <tr><td>долина (реки)</td><td>дОл</td><td>вдалеке</td><td>дАльний</td></tr>
+            <tr><td>кратчайший (путь)</td><td>крАткий</td><td>кротчайший (человек)</td><td>крОткий</td></tr>
+        </table>
+        <p class="note">⚠️ Если в задании рядом со словом стоит подсказка в скобках — обязательно читай её! Она помогает понять значение.</p>
+    </div>
+
+</div>
+
+<script>
+    function openModal(id) {
+        const content = document.getElementById(id).innerHTML;
+        document.getElementById('modal-body').innerHTML = content;
+        document.getElementById('modal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+        if (event) event.stopPropagation();
+        document.getElementById('modal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+</script>
+
+</body>
+</html>
