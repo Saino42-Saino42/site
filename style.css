@@ -1,5 +1,5 @@
 /* ============================================================
-   БАЗОВЫЕ СТИЛИ + ГЛАВНАЯ СТРАНИЦА
+   БАЗОВЫЕ СТИЛИ
    ============================================================ */
 
 * {
@@ -17,9 +17,13 @@ body {
     padding: 20px 0;
 }
 
+/* ============================================================
+   ГЛАВНАЯ СТРАНИЦА
+   ============================================================ */
+
 .container {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     background-color: #ffffff;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     display: flex;
@@ -35,14 +39,14 @@ header {
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
-    font-family: Arial, sans-serif;
+    font-family: 'Oswald', Arial, sans-serif;
 }
 
 .header-left {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .back-link {
@@ -60,13 +64,15 @@ header {
     align-items: center;
     gap: 5px;
     cursor: pointer;
+    font-weight: 500;
 }
 
-/* ===== Заголовок страницы ===== */
+/* ===== Заголовок "ПРОЕКТ" ===== */
 .title-section {
     padding: 30px 20px;
     display: flex;
     justify-content: center;
+    border-bottom: 1px dashed #ccc;
 }
 
 .title-box {
@@ -81,64 +87,68 @@ header {
     text-transform: uppercase;
 }
 
-/* ===== Приветствие (главная) ===== */
+/* ===== Приветствие ===== */
 .intro-text {
     padding: 20px 40px;
     text-align: center;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
     color: #333;
-    line-height: 1.5;
+    line-height: 1.6;
     border-top: 1px dashed #ccc;
     border-bottom: 1px dashed #ccc;
-    margin-bottom: 20px;
+    margin-bottom: 0;
+    letter-spacing: 0.3px;
 }
 
 /* ===== Секции с контентом (главная) ===== */
 .content-section {
     display: flex;
     border-bottom: 1px dashed #ccc;
-    min-height: 200px;
+    height: 240px;
+    overflow: hidden;
 }
 
 .content-section:last-child {
     border-bottom: none;
 }
 
+/* ===== Плейсхолдер с картинкой ===== */
 .image-placeholder {
     width: 40%;
+    height: 100%;
     background-color: #f7f7f7;
     border-right: 1px dashed #ccc;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
 }
 
-.plus-btn {
-    width: 40px;
-    height: 40px;
-    background-color: #ffffff;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    color: #666;
-    cursor: pointer;
-    transition: transform 0.2s;
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
 }
 
-.plus-btn:hover {
-    transform: scale(1.1);
+/* ===== Особый стиль для 2-й карточки (Практика) ===== */
+.image-placeholder--praktika img {
+    object-position: center 20%;
 }
 
+/* ===== Текстовая часть карточки ===== */
 .text-content {
     width: 60%;
-    padding: 30px;
+    padding: 15px 30px 30px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow: hidden;
 }
 
 .card-link {
@@ -152,7 +162,7 @@ header {
     font-family: 'Impact', 'Arial Black', sans-serif;
     font-size: 28px;
     color: #5c3a3a;
-    margin-bottom: 10px;
+    margin: 0;
     text-transform: uppercase;
     transition: transform 0.25s ease, color 0.25s ease;
     transform-origin: left center;
@@ -164,16 +174,48 @@ header {
     color: #7a4a4a;
 }
 
+/* ===== Декоративная линия под заголовком ===== */
 .text-content p {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    color: #777;
+    font-size: 0;
+    line-height: 0;
+    color: transparent;
+    width: 100%;
+    max-width: 260px;
+    height: 2px;
+    background-color: #5c3a3a;
+    margin-top: 4px;
+    display: block;
+    border-radius: 1px;
+    opacity: 0.6;
+    transition: opacity 0.25s ease, max-width 0.35s ease;
 }
 
-/* ===== Контент внутренних страниц ===== */
+.card-link:hover ~ p,
+.content-section:has(.card-link:hover) .text-content p {
+    opacity: 1;
+    max-width: 275px;
+}
+
+/* ============================================================
+   СТРАНИЦА ТЕОРИИ
+   ============================================================ */
+
+.theory-subtitle {
+    text-align: center;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: #5c3a3a;
+    margin: 0 40px 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+    letter-spacing: 0.5px;
+}
+
 .page-content {
-    padding: 40px;
-    font-family: Arial, sans-serif;
+    padding: 10px 40px 30px;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 400;
     font-size: 15px;
     color: #333;
     line-height: 1.7;
@@ -183,168 +225,28 @@ header {
     margin-bottom: 15px;
 }
 
-/* ============================================================
-   СТРАНИЦА ТЕОРИИ (задание 9)
-   ============================================================ */
-
-.subtitle {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #888;
-    margin-top: 5px;
-    letter-spacing: 1px;
-}
-
-/* ===== Чёрный квадрат вместо эмодзи и цифр ===== */
-.square-badge {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    background-color: #1e1e1e;
-    border-radius: 3px;
-    margin-right: 10px;
-    vertical-align: middle;
-    flex-shrink: 0;
-}
-
-/* ===== Блок: карточка + стрелка + текст ===== */
-.rule-with-card {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    padding: 30px 40px;
-    background: #ffffff;
-    flex-wrap: nowrap;
-}
-
-/* Обёртка карточки + стрелки */
-.rule-card-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    flex-shrink: 0;
-}
-
-/* Сама карточка (белая, с чёрной рамкой) */
-.rule-card {
-    width: 320px;
-    background: #ffffff;
-    border: 2px solid #1e1e1e;
-    border-radius: 10px;
-    padding: 22px 18px;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.rule-card:hover {
-    transform: scale(1.06);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-}
-
-/* Мини-таблица внутри карточки */
-.rule-card .mini-table {
-    width: 100%;
-    font-family: Arial, sans-serif;
-    font-size: 15px;
-}
-
-.rule-card .mini-row {
-    padding: 12px 10px;
-    border-bottom: 1px dashed #ccc;
-    text-align: center;
-    color: #1e1e1e;
-    font-weight: 500;
-}
-
-.rule-card .mini-row:last-child {
-    border-bottom: none;
-}
-
-/* Стрелка справа от карточки */
-.rule-arrow {
-    font-size: 52px;
-    color: #1e1e1e;
-    font-weight: bold;
-    line-height: 1;
-    margin-left: 18px;
-    user-select: none;
-    transition: transform 0.3s ease;
-    display: inline-block;
-}
-
-/* Стрелка двигается при наведении на карточку */
-.rule-card-wrapper:hover .rule-arrow {
-    transform: translateX(12px);
-}
-
-/* Текст справа */
-.rule-text {
-    flex: 1;
-    padding-left: 30px;
-    min-width: 0;
-}
-
-.rule-text h2 {
-    font-family: 'Georgia', serif;
-    font-size: 22px;
-    color: #5c3a3a;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 8px;
-    display: flex;
-    align-items: center;
-}
-
-/* ===== Алгоритм ===== */
-.algo-step {
-    margin-bottom: 18px;
-}
-
-.algo-step p {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
-}
-
-.algo-sublist {
-    list-style: disc;
-    padding-left: 30px;
-    margin-top: 10px;
-}
-
-.algo-sublist li {
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    color: #333;
-    line-height: 1.6;
-    margin-bottom: 8px;
-}
-
-/* ===== Заголовки разделов на странице теории ===== */
 .rules-section {
-    padding: 0 40px 20px;
+    padding: 0 0 20px;
 }
 
-.rules-section h2,
-.tables-section h2 {
-    font-family: 'Georgia', serif;
-    font-size: 20px;
+.rules-section h2 {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
     color: #5c3a3a;
-    margin: 30px 0 15px;
+    margin: 20px 0 15px;
     border-bottom: 2px solid #eee;
     padding-bottom: 8px;
-    display: flex;
-    align-items: center;
+    letter-spacing: 0.3px;
 }
 
 .rules-section p,
 .rules-section li {
-    font-family: Arial, sans-serif;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 400;
     font-size: 14px;
     color: #333;
-    line-height: 1.6;
+    line-height: 1.7;
 }
 
 .rules-list {
@@ -356,67 +258,36 @@ header {
     margin-bottom: 8px;
 }
 
-/* ===== Таблицы-карточки (книжные корешки) ===== */
-.tables-section {
-    padding: 0 40px 40px;
+.algo-step {
+    margin-bottom: 18px;
 }
 
-.tables-section .hint {
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    color: #888;
-    margin-bottom: 20px;
-    font-style: italic;
+.algo-step p {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
 }
 
-/* Мини-таблица внутри книги */
-.mini-table {
-    width: 100%;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
+.algo-sublist {
+    list-style: disc;
+    padding-left: 30px;
+    margin-top: 10px;
 }
 
-.mini-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 6px;
-    border-bottom: 1px solid #eee;
+.algo-sublist li {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 8px;
 }
 
-.mini-row.header {
-    background: #5c3a3a;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 4px 4px 0 0;
-}
-
-.mini-row span:first-child {
-    text-align: left;
-    flex: 1;
-}
-
-.mini-row span:not(:first-child) {
-    text-align: center;
-    width: 50px;
-    color: #5c3a3a;
-    font-weight: bold;
-}
-
-.mini-row.header span:not(:first-child) {
-    color: #fff;
-}
-
-.table-caption {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    color: #5c3a3a;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* ===== Модальное окно ===== */
+/* ============================================================
+   МОДАЛЬНОЕ ОКНО
+   ============================================================ */
 .modal {
     display: none;
     position: fixed;
@@ -438,9 +309,9 @@ header {
 
 .modal-content {
     background: #fff;
-    padding: 25px 30px;
+    padding: 30px 35px;
     border-radius: 10px;
-    max-width: 850px;
+    max-width: 1100px;
     width: 100%;
     max-height: 90vh;
     overflow-y: auto;
@@ -469,332 +340,735 @@ header {
     opacity: 0.7;
 }
 
-/* ===== Полные таблицы внутри модалки ===== */
 .full-table h3 {
-    font-family: 'Georgia', serif;
-    font-size: 20px;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
     color: #5c3a3a;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
     border-bottom: 2px solid #eee;
-    padding-bottom: 8px;
+    letter-spacing: 0.5px;
 }
 
-.full-table table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-.full-table th {
-    background: #5c3a3a;
-    color: #fff;
-    padding: 10px;
-    text-align: left;
-    font-weight: bold;
-}
-
-.full-table td {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    vertical-align: top;
-}
-
-.full-table tr:nth-child(even) td {
-    background: #fafafa;
-}
-
-.full-table .note {
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    color: #7a4a4a;
-    background: #fff8f0;
-    padding: 10px 15px;
-    border-left: 3px solid #5c3a3a;
-    border-radius: 4px;
-    line-height: 1.5;
-}
-
-/* ============================================================
-   КНИЖНЫЕ КОРЕШКИ
-   ============================================================ */
-
-/* Контейнер-стопка книг */
-.book-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-top: 10px;
-}
-
-/* Одиночная книга после текста */
-.book-stack-single {
-    padding: 10px 40px 30px;
-}
-
-/* Сама книга */
-.book {
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
-    transform-origin: left center;
-}
-
-/* Корешок */
-.book__spine {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 14px 22px;
-    background: linear-gradient(180deg, #f5f1ea 0%, #ece5d8 100%);
-    border: 1px solid #d9cdb8;
-    border-left: 6px solid #8b6f47;
-    border-radius: 3px 8px 8px 3px;
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.8),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
-        0 2px 4px rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Декоративная "полоска" на корешке сверху и снизу */
-.book__spine::before,
-.book__spine::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: #d9cdb8;
-}
-
-.book__spine::before { top: 0; }
-.book__spine::after  { bottom: 0; }
-
-/* Номер "тома" — как метка на корешке */
-.book__num {
-    font-family: 'Georgia', serif;
-    font-size: 13px;
-    font-weight: bold;
-    color: #fff;
-    background: #8b6f47;
-    width: 26px;
-    height: 26px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    flex-shrink: 0;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* Название книги */
-.book__title {
-    font-family: 'Georgia', serif;
-    font-size: 15px;
-    color: #4a3a28;
+.modal-subtitle {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: #5c3a3a;
+    margin: 20px 0 10px;
     letter-spacing: 0.3px;
-    flex: 1;
-    text-align: left;
 }
 
-/* ===== ЭФФЕКТ ПРИ НАВЕДЕНИИ ===== */
-
-/* Когда курсор на стопке — все книги слегка тускнеют */
-.book-stack:hover .book {
-    opacity: 0.45;
-    filter: grayscale(0.4);
+.intro-text-modal {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 14px;
 }
 
-/* ...кроме той, на которую навели */
-.book-stack:hover .book:hover {
-    opacity: 1;
-    filter: none;
-    transform: scale(1.04) translateX(6px);
-    z-index: 2;
+.intro-text-modal--center {
+    text-align: center;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 15px 20px;
+    background: #faf7f2;
+    border-left: 4px solid #8b6f47;
+    border-radius: 6px;
+    margin-bottom: 25px;
 }
 
-/* Тень усиленная у "выделенной" книги */
-.book:hover .book__spine {
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
-        0 6px 16px rgba(0, 0, 0, 0.18);
+/* ===== Карточки правил (Книга 1) ===== */
+.rule-card-modal {
+    background: #faf7f2;
+    border-left: 5px solid #5c3a3a;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.7;
 }
 
-/* Для одиночной книги — просто лёгкое увеличение */
-.book-stack-single .book:hover {
-    transform: scale(1.03) translateX(4px);
-}
-
-.book-stack-single .book:hover .book__spine {
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.9),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.05),
-        0 6px 16px rgba(0, 0, 0, 0.18);
-}
-
-/* ============================================================
-   СХЕМЫ ВНУТРИ БОЛЬШОЙ ТАБЛИЦЫ (ПРАВИЛА)
-   ============================================================ */
-
-.scheme {
-    padding: 20px 0;
+.rule-card-modal__title {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: #5c3a3a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
     border-bottom: 1px dashed #d9cdb8;
 }
 
-.scheme:last-child {
-    border-bottom: none;
-    padding-bottom: 5px;
+.rule-card-modal p {
+    margin-bottom: 10px;
 }
 
-.scheme__title {
-    font-family: 'Georgia', serif;
-    font-size: 17px;
+.rule-card-modal p:last-child {
+    margin-bottom: 0;
+}
+
+.rule-card-modal b {
     color: #5c3a3a;
-    margin-bottom: 16px;
-    font-weight: bold;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #eee;
-}
-
-.scheme__flow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-}
-
-.scheme__node {
-    padding: 10px 18px;
-    background: #faf7f2;
-    border: 1px solid #d9cdb8;
-    border-radius: 6px;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    color: #333;
-    text-align: center;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    cursor: default;
-    max-width: 100%;
-}
-
-.scheme__node:hover {
-    transform: scale(1.03);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.scheme__node--start {
-    background: #f0e9dd;
-    font-weight: bold;
-    color: #4a3a28;
-}
-
-.scheme__node--accent {
-    background: #5c3a3a;
-    color: #ffffff;
-    font-weight: bold;
-    border-color: #5c3a3a;
-}
-
-.scheme__node--yes {
-    background: #eaf3ea;
-    border-color: #a8c9a8;
-    color: #2f5a2f;
-}
-
-.scheme__node--no {
-    background: #f7ecec;
-    border-color: #d9b3b3;
-    color: #7a3a3a;
-}
-
-.scheme__arrow {
-    font-size: 18px;
-    color: #8b6f47;
-    line-height: 1;
-    user-select: none;
-}
-
-.scheme__row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-}
-
-.scheme__example {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    color: #7a4a4a;
-    background: #fff8f0;
-    padding: 8px 14px;
-    border-left: 3px solid #8b6f47;
-    border-radius: 4px;
-    margin-top: 14px;
-    font-style: italic;
-    line-height: 1.5;
-    text-align: center;
+    font-weight: 600;
 }
 
 /* ============================================================
-   АДАПТИВ (телефоны)
+   ТАБЛИЦЫ ВНУТРИ МОДАЛОК
+   ============================================================ */
+.chered-table,
+.omofon-table,
+.vocab-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.chered-table th,
+.omofon-table th,
+.vocab-table th {
+    background: #5c3a3a;
+    color: #fff;
+    padding: 12px 14px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+}
+
+.chered-table td,
+.omofon-table td,
+.vocab-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+    line-height: 1.6;
+}
+
+.chered-table tr:nth-child(even) td,
+.omofon-table tr:nth-child(even) td,
+.vocab-table tr:nth-child(even) td {
+    background: #fafafa;
+}
+
+.chered-table td:first-child {
+    width: 55%;
+    background: #fdfaf5;
+}
+
+.chered-table td:last-child {
+    width: 45%;
+    background: #fdf6f5;
+    color: #6a4a4a;
+}
+
+.omofon-table th {
+    text-align: center;
+}
+
+.omofon-table td {
+    width: 50%;
+}
+
+.vocab-table td {
+    width: 25%;
+    text-align: left;
+}
+
+/* ============================================================
+   ПОЛКА С ВЕРТИКАЛЬНЫМИ КНИГАМИ
+   ============================================================ */
+.books-shelf {
+    padding: 45px 40px 55px;
+    background: #f7f3ec;
+    border-top: 1px dashed #ccc;
+}
+
+.books-shelf__inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 14px;
+    min-height: 320px;
+    padding: 0 10px 14px;
+    border-bottom: 5px solid #8b6f47;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+.books-shelf__inner::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: linear-gradient(to bottom, rgba(139, 111, 71, 0.28), transparent);
+    border-radius: 0 0 6px 6px;
+}
+
+.book--vertical {
+    width: 90px;
+    height: 300px;
+    border-radius: 5px 5px 4px 4px;
+    background: linear-gradient(
+        90deg,
+        #8b6f47 0%,
+        #b89b70 12%,
+        #d6bd93 50%,
+        #b89b70 88%,
+        #8b6f47 100%
+    );
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -4px 0 rgba(0, 0, 0, 0.18),
+        inset -3px 0 0 rgba(255, 255, 255, 0.15),
+        inset 3px 0 0 rgba(0, 0, 0, 0.14),
+        3px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-origin: bottom center;
+    position: relative;
+    overflow: hidden;
+    padding: 22px 8px;
+}
+
+.book--vertical::before,
+.book--vertical::after {
+    content: '';
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: rgba(74, 58, 40, 0.45);
+}
+
+.book--vertical::before { top: 16px; }
+.book--vertical::after  { bottom: 16px; }
+
+.book__label {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    color: #2a1e0f;
+    letter-spacing: 0.5px;
+    line-height: 1.25;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    word-break: break-word;
+    hyphens: auto;
+    overflow: hidden;
+    max-height: 100%;
+    padding: 4px 0;
+}
+
+.book--vertical:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow:
+        inset 0 4px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -4px 0 rgba(0, 0, 0, 0.18),
+        inset -3px 0 0 rgba(255, 255, 255, 0.2),
+        inset 3px 0 0 rgba(0, 0, 0, 0.14),
+        0 14px 24px rgba(0, 0, 0, 0.28);
+}
+
+/* ============================================================
+   ОБЩИЙ АДАПТИВ
    ============================================================ */
 @media (max-width: 720px) {
-    .rule-with-card {
+    .container {
+        max-width: 100%;
+    }
+
+    .content-section {
         flex-direction: column;
-        gap: 15px;
-        padding: 20px;
+        height: auto;
     }
 
-    .rule-card-wrapper {
-        flex-direction: row;
-    }
-
-    .rule-card {
+    .image-placeholder {
         width: 100%;
-        max-width: 320px;
+        height: 200px;
+        border-right: none;
+        border-bottom: 1px dashed #ccc;
     }
 
-    .rule-arrow {
-        font-size: 40px;
-        margin-left: 10px;
+    .text-content {
+        width: 100%;
+        padding: 15px 20px 20px;
     }
 
-    .rule-card-wrapper:hover .rule-arrow {
-        transform: translateX(8px);
+    .modal-content {
+        padding: 20px 18px;
+        max-width: 100%;
     }
 
-    .rule-text {
-        padding-left: 0;
+    .full-table h3 {
+        font-size: 18px;
     }
 
-    .book-stack-single {
-        padding: 10px 20px 20px;
+    .chered-table,
+    .omofon-table,
+    .vocab-table {
+        font-size: 11px;
     }
 
-    .book__spine {
-        padding: 12px 16px;
+    .chered-table td,
+    .omofon-table td,
+    .vocab-table td,
+    .chered-table th,
+    .omofon-table th,
+    .vocab-table th {
+        padding: 8px 10px;
     }
 
-    .book__title {
-        font-size: 14px;
+    .vocab-table td {
+        width: 50%;
     }
 
-    .scheme__node {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    .scheme__title {
+    .theory-subtitle {
+        margin: 0 20px 20px;
         font-size: 15px;
     }
 
-    .scheme__row {
-        flex-direction: column;
-        align-items: center;
+    .page-content {
+        padding: 10px 20px 20px;
     }
+
+    .books-shelf {
+        padding: 25px 15px 35px;
+    }
+
+    .books-shelf__inner {
+        gap: 10px;
+        min-height: 260px;
+    }
+
+    .book--vertical {
+        width: 70px;
+        height: 240px;
+        padding: 16px 6px;
+    }
+
+    .book__label {
+        font-size: 11px;
+        line-height: 1.2;
+    }
+
+    .book--vertical::before { top: 12px; }
+    .book--vertical::after  { bottom: 12px; }
+}
+
+/* ============================================================
+   СТРАНИЦА ПРАКТИКИ
+   ============================================================ */
+
+/* Область с карточками */
+.practice-area {
+    position: relative;
+    padding: 30px 60px 100px;
+    min-height: 540px;
+}
+
+/* Каждая карточка */
+.practice-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: absolute;
+}
+
+.practice-item--day { top: 30px; left: 80px; }
+.practice-item--week { top: 240px; right: 80px; flex-direction: row-reverse; }
+
+/* Квадрат карточки */
+.practice-square {
+    width: 240px;
+    height: 240px;
+    background-color: #faf7f2;
+    border: 3px solid #5c3a3a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: #5c3a3a;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+    flex-shrink: 0;
+    box-shadow: 5px 5px 0 rgba(92, 58, 58, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.practice-square:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 8px 8px 0 rgba(92, 58, 58, 0.28);
+}
+
+.practice-square--text {
+    background-color: #f7f3ec;
+    font-size: 26px;
+    font-style: italic;
+    letter-spacing: 3px;
+}
+
+/* Номер задания внутри карточки */
+.practice-square__label {
+    font-size: 16px;
+    letter-spacing: 1px;
+    line-height: 1.5;
+    text-align: center;
+    color: #5c3a3a;
+}
+
+.practice-square__label b {
+    display: block;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 6px;
+    color: #5c3a3a;
+}
+
+.practice-square--text .practice-square__label {
+    font-size: 14px;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
+.practice-square--text .practice-square__label b {
+    font-size: 44px;
+}
+
+/* Подписи под карточками */
+.practice-label {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: #5c3a3a;
+    letter-spacing: 1px;
+    text-transform: lowercase;
+    white-space: nowrap;
+}
+
+/* Таймер */
+.practice-timer {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    font-weight: 400;
+    color: #8a6a5a;
+    letter-spacing: 0.3px;
+    text-transform: none;
+}
+
+/* Заголовок над лентой */
+.ribbon-title {
+    text-align: center;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 19px;
+    color: #5c3a3a;
+    letter-spacing: 1px;
+    padding: 25px 40px 20px;
+    border-top: 1px dashed #ccc;
+    text-transform: none;
+}
+
+/* Бегущая лента */
+.ribbon {
+    overflow: hidden;
+    padding: 40px 0;
+    background: #faf7f2;
+}
+
+.ribbon-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: ribbon-move 60s linear infinite;
+}
+
+.ribbon-square {
+    width: 120px;
+    height: 120px;
+    background: repeating-linear-gradient(
+        45deg, #e8d9bf, #e8d9bf 10px, #d9c4a0 10px, #d9c4a0 20px
+    );
+    border-radius: 8px;
+    flex-shrink: 0;
+    box-shadow: 2px 2px 6px rgba(139, 111, 71, 0.15);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
+}
+
+.ribbon-square:hover {
+    transform: scale(1.08);
+    box-shadow: 4px 4px 12px rgba(139, 111, 71, 0.35);
+}
+
+.ribbon-square--solved {
+    background: repeating-linear-gradient(
+        45deg, #c8d6c8, #c8d6c8 10px, #b5c9b5 10px, #b5c9b5 20px
+    );
+    opacity: 0.7;
+}
+
+@keyframes ribbon-move {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
+}
+
+/* Блок "Все задания" */
+.more-tasks {
+    padding: 30px 40px 50px;
+    background: #faf7f2;
+    border-top: 1px dashed #ccc;
+}
+
+.more-tasks__title {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: #5c3a3a;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.more-tasks__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.more-tasks__btn {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 14px 0;
+    border: 2px solid #5c3a3a;
+    border-radius: 8px;
+    background: #faf7f2;
+    color: #5c3a3a;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    width: 80px;
+    flex-shrink: 0;
+}
+
+.more-tasks__btn:hover {
+    background: #5c3a3a;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.more-tasks__btn--solved {
+    background: #e8f5e8;
+    border-color: #7bbf7b;
+    color: #2e6b2e;
+}
+
+.more-tasks__btn--solved:hover {
+    background: #7bbf7b;
+    color: #fff;
+}
+
+/* Задание внутри модального окна */
+.task-title {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #5c3a3a;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #eee;
+    letter-spacing: 0.5px;
+}
+
+.task-text {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 22px;
+    line-height: 1.7;
+}
+
+.quiz-row {
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    background: #fafafa;
+    border-radius: 8px;
+    user-select: none;
+    transition: background 0.2s ease;
+}
+
+.quiz-option:hover { background: #f3ede4; }
+
+.quiz-option input[type="checkbox"] {
+    margin-top: 3px;
+    width: 18px;
+    height: 18px;
+    accent-color: #5c3a3a;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.quiz-num { font-weight: 600; color: #5c3a3a; flex-shrink: 0; }
+.quiz-text { flex: 1; }
+
+.quiz-row--correct { border-color: #7bbf7b; background: #eef8ee; }
+.quiz-row--correct .quiz-option { background: #eef8ee; }
+
+.quiz-row--wrong { border-color: #e08585; background: #fdeeee; }
+.quiz-row--wrong .quiz-option { background: #fdeeee; }
+
+.quiz-row--missed { border-color: #e6c46a; background: #fdf6e3; }
+.quiz-row--missed .quiz-option { background: #fdf6e3; }
+
+.quiz-actions {
+    display: flex;
+    gap: 14px;
+    margin: 22px 0 15px;
+}
+
+.quiz-btn {
+    font-family: 'Oswald', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    background: #5c3a3a;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.quiz-btn:hover { background: #7a4a4a; transform: translateY(-1px); }
+
+.quiz-btn--reset { background: #e8d9bf; color: #5c3a3a; }
+.quiz-btn--reset:hover { background: #d9c4a0; }
+
+.quiz-result {
+    margin-top: 18px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-family: 'Oswald', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    display: none;
+}
+
+.quiz-result--ok,
+.quiz-result--fail,
+.quiz-result--warn { display: block; }
+
+.quiz-result--ok { background: #eef8ee; border-left: 5px solid #7bbf7b; color: #2e6b2e; }
+.quiz-result--fail { background: #fdeeee; border-left: 5px solid #e08585; color: #8a2b2b; }
+.quiz-result--warn { background: #fdf6e3; border-left: 5px solid #e6c46a; color: #8a6a1f; }
+
+.quiz-hint { font-size: 14px; color: #6a4a4a; }
+
+/* Сообщение "Все задания решены" */
+.all-done {
+    text-align: center;
+    padding: 30px 20px;
+    font-family: 'Oswald', Arial, sans-serif;
+}
+
+.all-done__emoji {
+    font-size: 56px;
+    line-height: 1;
+    margin-bottom: 18px;
+    text-align: center;
+}
+
+.all-done__title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #5c3a3a;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.all-done__text {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.all-done__actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* ============================================================
+   АДАПТИВ ДЛЯ ПРАКТИКИ
+   ============================================================ */
+@media (max-width: 720px) {
+    .practice-area { padding: 20px; min-height: auto; }
+
+    .practice-item {
+        position: relative;
+        top: auto; left: auto; right: auto;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 30px;
+        align-items: flex-start;
+    }
+
+    .practice-item--week { flex-direction: column; align-items: flex-end; }
+
+    .practice-square { width: 180px; height: 180px; font-size: 14px; }
+    .practice-square--text { font-size: 20px; }
+    .practice-square__label b { font-size: 36px; }
+    .practice-square--text .practice-square__label b { font-size: 32px; }
+    .practice-label { font-size: 17px; }
+    .practice-timer { font-size: 11px; }
+
+    .ribbon-title { font-size: 16px; padding: 20px 20px 15px; }
+    .ribbon-square { width: 80px; height: 80px; }
+
+    .more-tasks { padding: 20px 15px 30px; }
+    .more-tasks__grid { gap: 8px; }
+    .more-tasks__btn { font-size: 14px; padding: 10px 0; width: 56px; }
+
+    .all-done__emoji { font-size: 42px; margin-bottom: 12px; }
+    .all-done__title { font-size: 20px; }
+    .all-done__text { font-size: 16px; }
 }
