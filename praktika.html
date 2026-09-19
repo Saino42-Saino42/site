@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Практика — Подготовка к ЕГЭ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,11 +28,460 @@
             </div>
         </div>
 
-        <div class="page-content">
-            <p>Здесь будут практические задания для подготовки к ЕГЭ.</p>
-            <p>Добавь тесты, упражнения и задания с ответами.</p>
+        <div class="practice-area">
+
+            <!-- Карточка дня -->
+            <div class="practice-item practice-item--day">
+                <div class="practice-square" onclick="openDailyTask()">
+                    <span class="practice-square__label">
+                        ЗАДАНИЕ<br><b id="daily-number">—</b>
+                    </span>
+                </div>
+                <div class="practice-label">
+                    — карточка дня<br>
+                    <small class="practice-timer" id="daily-timer">обновится через …</small>
+                </div>
+            </div>
+
+            <!-- Карточка недели -->
+            <div class="practice-item practice-item--week">
+                <div class="practice-square practice-square--text" onclick="openWeeklyTask()">
+                    <span class="practice-square__label">
+                        ЗАДАНИЕ<br><b id="weekly-number">—</b>
+                    </span>
+                </div>
+                <div class="practice-label">
+                    карточка недели —<br>
+                    <small class="practice-timer" id="weekly-timer">обновится через …</small>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ribbon-title">
+            Задания формата ЕГЭ
+        </div>
+
+        <!-- Бегущая лента -->
+        <div class="ribbon">
+            <div class="ribbon-track" id="ribbon-track"></div>
+        </div>
+
+        <!-- Кнопки для всех заданий -->
+        <div class="more-tasks">
+            <p class="more-tasks__title">Все задания:</p>
+            <div class="more-tasks__grid" id="more-tasks-grid"></div>
+        </div>
+
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="practice-modal" class="modal" onclick="closePractice(event)">
+        <span class="modal-close" onclick="closePractice(event)">×</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div id="practice-modal-body"></div>
         </div>
     </div>
+
+    <script src="tasks.js"></script>
+
+    <script>
+        /* ============================================================
+           ПРОГРЕСС В localStorage
+           ============================================================ */
+        const STORAGE_KEY = 'ege_practice_solved';
+        const WEEKLY_STORAGE_KEY = 'ege_practice_weekly';
+
+        function getSolved() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (e) { return []; }
+        }
+
+        function setSolved(arr) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+        }
+
+        function markSolved(number) {
+            const solved = getSolved();
+            if (!solved.includes(number)) {
+                solved.push(number);
+                setSolved(solved);
+            }
+        }
+
+        function resetProgress() {
+            localStorage.removeItem(STORAGE_KEY);
+        }
+
+        function getAllTaskNumbers() {
+            return Object.keys(TASKS).map(Number);
+        }
+
+        function getUnsolved() {
+            const solved = getSolved();
+            return getAllTaskNumbers().filter(n => !solved.includes(n));
+        }
+
+        /* ============================================================
+           ТАЙМЕРЫ КАРТОЧЕК (день / неделя)
+           ============================================================ */
+
+        /* --- Карточка дня: номер = текущий день месяца --- */
+        function getDailyTaskNumber() {
+            const day = new Date().getDate();
+            const all = getAllTaskNumbers();
+            return all[Math.min(day - 1, all.length - 1)];
+        }
+
+        /* --- Карточка недели: случайное, не равное предыдущему --- */
+        function getWeeklyTaskNumber() {
+            const all = getAllTaskNumbers();
+            let prev = null;
+            try {
+                const raw = localStorage.getItem(WEEKLY_STORAGE_KEY);
+                if (raw) prev = JSON.parse(raw);
+            } catch (e) {}
+
+            let num;
+            let attempts = 0;
+            do {
+                num = all[Math.floor(Math.random() * all.length)];
+                attempts++;
+            } while (all.length > 1 && num === prev && attempts < 100);
+
+            localStorage.setItem(WEEKLY_STORAGE_KEY, JSON.stringify(num));
+            return num;
+        }
+
+        /* --- Сколько осталось до ближайшего 00:00 --- */
+        function msUntilMidnight() {
+            const now = new Date();
+            const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+            return tomorrow - now;
+        }
+
+        /* --- Сколько осталось до ближайшего воскресенья 00:00 --- */
+        function msUntilSundayMidnight() {
+            const now = new Date();
+            const day = now.getDay();                    // 0 = вс
+            const daysUntilSunday = (7 - day) % 7;
+            let target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + daysUntilSunday, 0, 0, 0, 0);
+            if (day === 0 && now.getHours() >= 0) {
+                target = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7, 0, 0, 0, 0);
+            }
+            return target - now;
+        }
+
+        /* --- Форматирует мс в "чч:мм:сс" --- */
+        function formatTime(ms) {
+            if (!ms || isNaN(ms) || ms < 0) ms = 0;
+            const totalSec = Math.floor(ms / 1000);
+            const h = Math.floor(totalSec / 3600);
+            const m = Math.floor((totalSec % 3600) / 60);
+            const s = totalSec % 60;
+            return String(h).padStart(2, '0') + ':' +
+                   String(m).padStart(2, '0') + ':' +
+                   String(s).padStart(2, '0');
+        }
+
+        /* --- Обновляет таймеры и номера карточек --- */
+        function updateCardTimers() {
+            // Карточка дня
+            const dailyNum = getDailyTaskNumber();
+            const dailyEl = document.getElementById('daily-number');
+            const dailyTimer = document.getElementById('daily-timer');
+            if (dailyEl) dailyEl.textContent = dailyNum;
+            if (dailyTimer) dailyTimer.textContent = 'обновится через ' + formatTime(msUntilMidnight());
+
+            // Карточка недели
+            let weeklyNum = null;
+            try {
+                const raw = localStorage.getItem(WEEKLY_STORAGE_KEY);
+                if (raw) weeklyNum = JSON.parse(raw);
+            } catch (e) { weeklyNum = null; }
+
+            if (weeklyNum === null || !TASKS[weeklyNum]) {
+                weeklyNum = getWeeklyTaskNumber();
+            }
+
+            const weeklyEl = document.getElementById('weekly-number');
+            const weeklyTimer = document.getElementById('weekly-timer');
+            if (weeklyEl) weeklyEl.textContent = weeklyNum;
+            if (weeklyTimer) weeklyTimer.textContent = 'обновится через ' + formatTime(msUntilSundayMidnight());
+        }
+
+        /* --- Открытие заданий из карточек --- */
+        function openDailyTask() {
+            openTask(getDailyTaskNumber());
+        }
+
+        function openWeeklyTask() {
+            let weeklyNum = null;
+            try {
+                const raw = localStorage.getItem(WEEKLY_STORAGE_KEY);
+                if (raw) weeklyNum = JSON.parse(raw);
+            } catch (e) { weeklyNum = null; }
+
+            if (!weeklyNum || !TASKS[weeklyNum]) {
+                weeklyNum = getWeeklyTaskNumber();
+            }
+            openTask(weeklyNum);
+        }
+
+        /* ============================================================
+           СЛУЧАЙНОЕ ЗАДАНИЕ (для ленты и кнопок)
+           ============================================================ */
+        function openRandomTask() {
+            const unsolved = getUnsolved();
+            if (unsolved.length === 0) {
+                showAllDoneMessage();
+                return;
+            }
+            const randomIndex = Math.floor(Math.random() * unsolved.length);
+            openTask(unsolved[randomIndex]);
+        }
+
+        /* ============================================================
+           ОТКРЫТИЕ ЗАДАНИЯ
+           ============================================================ */
+        function openTask(number) {
+            const task = TASKS[number];
+            if (!task) {
+                alert('Задание №' + number + ' не найдено.');
+                return;
+            }
+
+            if (getUnsolved().length === 0) {
+                showAllDoneMessage();
+                return;
+            }
+
+            let html = '<h3 class="task-title">Задание ' + number + '</h3>';
+            html += '<p class="task-text">' + task.question + '</p>';
+            html += '<form id="quiz-form" onsubmit="checkAnswer(event, ' + number + ')">';
+
+            task.options.forEach(function(option, index) {
+                const num = index + 1;
+                html += ''
+                    + '<div class="quiz-row">'
+                    +   '<label class="quiz-option">'
+                    +     '<input type="checkbox" name="answer" value="' + num + '">'
+                    +     '<span class="quiz-num">' + num + ')</span>'
+                    +     '<span class="quiz-text">' + option + '</span>'
+                    +   '</label>'
+                    + '</div>';
+            });
+
+            html += ''
+                + '<div class="quiz-actions">'
+                +   '<button type="submit" class="quiz-btn">Ответить</button>'
+                +   '<button type="button" class="quiz-btn quiz-btn--reset" onclick="resetQuiz()">Сбросить</button>'
+                + '</div>'
+                + '<div id="quiz-result" class="quiz-result"></div>'
+                + '</form>';
+
+            document.getElementById('practice-modal-body').innerHTML = html;
+
+            const modal = document.getElementById('practice-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            const modalContent = modal.querySelector('.modal-content');
+            if (modalContent) modalContent.scrollTop = 0;
+        }
+
+        /* ============================================================
+           СООБЩЕНИЕ "ВСЁ РЕШЕНО"
+           ============================================================ */
+        function showAllDoneMessage() {
+            const html = ''
+                + '<div class="all-done">'
+                +   '<div class="all-done__emoji">🎉</div>'
+                +   '<h3 class="all-done__title">Вы решили все задания!</h3>'
+                +   '<p class="all-done__text">Начать цикл заново?</p>'
+                +   '<div class="all-done__actions">'
+                +     '<button type="button" class="quiz-btn" onclick="confirmReset(true)">Да</button>'
+                +     '<button type="button" class="quiz-btn quiz-btn--reset" onclick="confirmReset(false)">Нет</button>'
+                +   '</div>'
+                + '</div>';
+
+            document.getElementById('practice-modal-body').innerHTML = html;
+
+            const modal = document.getElementById('practice-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function confirmReset(yes) {
+            if (yes) {
+                resetProgress();
+                updateProgressDisplay();
+                closePractice();
+            } else {
+                closePractice();
+            }
+        }
+
+        /* ============================================================
+           ЗАКРЫТИЕ
+           ============================================================ */
+        function closePractice(event) {
+            if (event) event.stopPropagation();
+            const modal = document.getElementById('practice-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePractice();
+        });
+
+        /* ============================================================
+           ПРОВЕРКА ОТВЕТА
+           ============================================================ */
+        function checkAnswer(event, number) {
+            event.preventDefault();
+
+            const correct = TASKS[number].correct;
+            const form = document.getElementById('quiz-form');
+            const checked = Array.from(form.querySelectorAll('input[name="answer"]:checked'))
+                                 .map(cb => cb.value)
+                                 .sort();
+            const result = document.getElementById('quiz-result');
+
+            if (checked.length === 0) {
+                result.className = 'quiz-result quiz-result--warn';
+                result.innerHTML = '⚠️ Выберите хотя бы один вариант ответа.';
+                return;
+            }
+
+            const correctSorted = [...correct].sort();
+            const isCorrect = checked.length === correctSorted.length &&
+                              checked.every((v, i) => v === correctSorted[i]);
+
+            form.querySelectorAll('.quiz-row').forEach(row => {
+                row.classList.remove('quiz-row--correct', 'quiz-row--wrong', 'quiz-row--missed');
+                const val = row.querySelector('input').value;
+                const isRight = correct.includes(val);
+                const isChecked = row.querySelector('input').checked;
+
+                if (isRight && isChecked) row.classList.add('quiz-row--correct');
+                else if (!isRight && isChecked) row.classList.add('quiz-row--wrong');
+                else if (isRight && !isChecked) row.classList.add('quiz-row--missed');
+            });
+
+            if (isCorrect) {
+                markSolved(number);
+                updateProgressDisplay();
+                result.className = 'quiz-result quiz-result--ok';
+                result.innerHTML = '✅ Верно! Правильные ответы: <b>' + correct.join(', ') + '</b>.';
+            } else {
+                result.className = 'quiz-result quiz-result--fail';
+                result.innerHTML = '❌ Неверно. Попробуйте ещё раз.<br>'
+                    + '<span class="quiz-hint">Правильные ответы: <b>' + correct.join(', ') + '</b>.</span>';
+            }
+        }
+
+        function resetQuiz() {
+            const form = document.getElementById('quiz-form');
+            if (!form) return;
+            form.reset();
+            const res = document.getElementById('quiz-result');
+            res.className = 'quiz-result';
+            res.innerHTML = '';
+            form.querySelectorAll('.quiz-row').forEach(row => {
+                row.classList.remove('quiz-row--correct', 'quiz-row--wrong', 'quiz-row--missed');
+            });
+        }
+
+        /* ============================================================
+           ОТОБРАЖЕНИЕ ПРОГРЕССА
+           ============================================================ */
+        function updateProgressDisplay() {
+            const solved = getSolved();
+
+            document.querySelectorAll('.more-tasks__btn').forEach(btn => {
+                btn.classList.toggle('more-tasks__btn--solved', solved.includes(Number(btn.dataset.num)));
+            });
+
+            document.querySelectorAll('.ribbon-square').forEach(sq => {
+                sq.classList.toggle('ribbon-square--solved', solved.includes(Number(sq.dataset.num)));
+            });
+        }
+
+        /* ============================================================
+           ГЕНЕРАЦИЯ ЛЕНТЫ И КНОПОК
+           ============================================================ */
+        document.addEventListener('DOMContentLoaded', function() {
+            // Лента
+            const ribbon = document.getElementById('ribbon-track');
+            if (ribbon) {
+                const firstTen = [1,2,3,4,5,6,7,8,9,10];
+                firstTen.concat(firstTen).forEach(num => {
+                    const sq = document.createElement('div');
+                    sq.className = 'ribbon-square';
+                    sq.dataset.num = num;
+                    sq.title = 'Задание ' + num;
+                    sq.addEventListener('click', () => openTask(num));
+                    ribbon.appendChild(sq);
+                });
+            }
+
+            // Кнопки 1–31
+            const grid = document.getElementById('more-tasks-grid');
+            if (grid) {
+                getAllTaskNumbers().forEach(num => {
+                    const btn = document.createElement('button');
+                    btn.className = 'more-tasks__btn';
+                    btn.dataset.num = num;
+                    btn.textContent = num;
+                    btn.addEventListener('click', () => openTask(num));
+                    grid.appendChild(btn);
+                });
+            }
+
+            updateProgressDisplay();
+
+            // Таймеры: запуск + обновление каждую секунду
+            updateCardTimers();
+            setInterval(updateCardTimers, 1000);
+        });
+
+        /* ============================================================
+           🧪 СЕКРЕТНЫЕ КОМАНДЫ
+           ============================================================ */
+        let keyBuffer = '';
+        let keyTimer = null;
+
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+            keyBuffer += e.key.toLowerCase();
+            if (keyBuffer.length > 10) keyBuffer = keyBuffer.slice(-10);
+
+            clearTimeout(keyTimer);
+            keyTimer = setTimeout(() => { keyBuffer = ''; }, 2000);
+
+            if (keyBuffer.endsWith('test')) {
+                keyBuffer = '';
+                const all = getAllTaskNumbers();
+                const last = all[Math.floor(Math.random() * all.length)];
+                setSolved(all.filter(n => n !== last));
+                updateProgressDisplay();
+                console.log('🧪 [TEST] Отмечено 30 заданий. Осталось: ' + last);
+            }
+
+            if (keyBuffer.endsWith('reset')) {
+                keyBuffer = '';
+                resetProgress();
+                updateProgressDisplay();
+                closePractice();
+                console.log('🧹 [TEST] Прогресс сброшен');
+            }
+        });
+    </script>
 
 </body>
 </html>
