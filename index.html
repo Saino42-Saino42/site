@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проект — Подготовка к ЕГЭ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <meta name="description" content="Тренажёр для подготовки к ЕГЭ по русскому языку: 9 задание, правописание корней.">
+    <meta property="og:title" content="Подготовка к ЕГЭ — 9 задание">
+    <meta property="og:description" content="Теория и интерактивные тренажёры по правописанию корней.">
+    <link rel="icon" href="images/logo-black.png">
+    <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c2c2c">
+</head>
+<body>
+
+    <div class="container">
+        <!-- Шапка -->
+        <header>
+            <div class="header-left">
+                <span>проект</span>
+            </div>
+            <div class="header-right">
+                <span>Подготовка к ЕГЭ</span>
+                <img src="images/logo-white.png" class="header-logo" width="12" alt="Логотип">
+            </div>
+        </header>
+
+        <!-- Заголовок ПРОЕКТ -->
+        <div class="title-section">
+            <div class="title-box">
+                <h1>ПРОЕКТ</h1>
+            </div>
+        </div>
+
+        <!-- Приветствие -->
+        <div class="intro-text">
+            Приветствую вас на сайте для школьников! Здесь вы найдёте множество полезных материалов для подготовки к ЕГЭ по русскому языку, желаю удачи в сдаче экзамена!
+        </div>
+
+        <div class="home-progress" id="home-progress"></div>
+
+        <!-- Секция 1: Теория -->
+        <div class="content-section">
+            <div class="image-placeholder">
+                <img src="images/teor.jpg" alt="Теория">
+            </div>
+            <div class="text-content">
+                <a href="teor.html" class="card-link" aria-label="Теория: перейти к теории">
+                    <h2>Теория</h2>
+                </a>
+                <p>Нажмите, чтобы перейти к теории</p>
+            </div>
+        </div>
+
+        <!-- Секция 2: Практика -->
+        <div class="content-section">
+            <div class="image-placeholder image-placeholder--praktika">
+                <img src="images/praktika.jpg" alt="Практика">
+            </div>
+            <div class="text-content">
+                <a href="praktika.html" class="card-link" aria-label="Практика: перейти к тренажёрам">
+                    <h2>Практика</h2>
+                </a>
+                <p>Нажмите, чтобы перейти к практике</p>
+            </div>
+        </div>
+    </div>
+
+<script src="tasks.js"></script>
+    <script>
+        (function () {
+            var el = document.getElementById('home-progress');
+            try {
+                var solved = JSON.parse(localStorage.getItem('ege_practice_solved') || '[]').length;
+                var st = JSON.parse(localStorage.getItem('ege_streak') || '{}');
+                var total = Object.keys(TASKS).length;
+                var d = new Date().toDateString(), y = new Date(Date.now() - 864e5).toDateString();
+                var streak = (st.last === d || st.last === y) ? st.count : 0;
+                el.innerHTML = '<span>Решено: <b>' + solved + '</b> из ' + total + '</span><span>Серия: <b>' + streak + '</b> дн.</span>'
+                    + '<a href="praktika.html" class="home-progress__btn">' + (solved ? 'Продолжить' : 'Начать') + '</a>';
+            } catch (e) { el.style.display = 'none'; }
+        })();
+    </script>
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});</script>
+</body>
+</html>
