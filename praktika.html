@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практика — Подготовка к ЕГЭ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/logo-black.png">
+    <link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c2c2c">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <a href="index.html" class="back-link">← назад</a>
+            </div>
+            <div class="header-right">
+                <span>Подготовка к ЕГЭ</span>
+                <img src="images/logo-white.png" class="header-logo" width="12" alt="Логотип">
+            </div>
+        </header>
+
+        <div class="title-section">
+            <div class="title-box">
+                <h1>ПРАКТИКА</h1>
+            </div>
+        </div>
+
+        <div class="practice-cards">
+
+            <div class="practice-card">
+                <div class="practice-square" onclick="openDailyTask()">
+                    <span class="practice-square__label">
+                        ТРЕНАЖЁР<br><b id="daily-number">—</b>
+                    </span>
+                </div>
+                <div class="practice-card__info">
+                    <span class="practice-card__name">карточка дня</span>
+                    <span class="practice-timer" id="daily-timer">обновится через …</span>
+                </div>
+            </div>
+
+            <div class="practice-card">
+                <div class="practice-square practice-square--text" onclick="openWeeklyTask()">
+                    <span class="practice-square__label">
+                        ТРЕНАЖЁР<br><b id="weekly-number">—</b>
+                    </span>
+                </div>
+                <div class="practice-card__info">
+                    <span class="practice-card__name">карточка недели</span>
+                    <span class="practice-timer" id="weekly-timer">обновится через …</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="more-tasks">
+            <p class="more-tasks__title">Тренажёры:</p>
+            <div class="more-tasks__grid" id="trainers-grid"></div>
+        </div>
+
+        <div class="more-tasks">
+            <p class="more-tasks__title">Задания в формате ЕГЭ:</p>
+            <div class="more-tasks__grid" id="ege-grid"></div>
+        </div>
+
+    </div>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <div class="history-panel" id="history-panel">
+        <div class="history-panel__arrow" id="history-arrow"><img src="images/logo-black.png" width="15" alt="История"></div>
+        <div class="history-panel__dropdown" id="history-dropdown">
+            <div class="history-panel__title">Выполненные задания</div>
+            <div class="history-panel__items" id="history-items">
+                <div class="history-panel__empty">Пока ничего</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="practice-modal" class="modal" onclick="closePractice(event)">
+        <span class="modal-close" onclick="closePractice(event)">×</span>
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div id="practice-modal-body"></div>
+        </div>
+    </div>
+
+    <script src="tasks.js"></script>
+
+    <script src="practice.js"></script>
+    <script src="words.js"></script>
+    <script src="extras.js"></script>
+    <script src="recall.js"></script>
+
+<script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function () {});</script>
+</body>
+</html>
